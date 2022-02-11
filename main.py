@@ -1,11 +1,11 @@
 # | Opakovani kalkulacka |
 # Vytvořil Matej Matejka
 
-
 import datetime
-
 cycle = True
 
+
+# bmi test
 def bmi():
     vyska = float(input("Zadejte vaší výšku v metrech: "))
     vaha = int(input("Zadejte vaší váhu v kilogramech: "))
@@ -17,6 +17,7 @@ def bmi():
     elif bmi > 30:
         print("     Jste obézní, ", "Vaše BMI je: ", bmi)
 
+# identifikace trojuhelniku
 def trojuhelniky():
     cyclet = 1
     while cyclet == 1:
@@ -34,6 +35,7 @@ def trojuhelniky():
             print("     Není trojúhelník")
             exist = False
         if exist == True:
+
             # pravoúhlý
             if stranaA > stranaB and stranaA > stranaC:
                 if stranaB * stranaB + stranaC * stranaC == stranaA * stranaA:
@@ -59,7 +61,7 @@ def trojuhelniky():
             if stranaC == stranaA or stranaC == stranaB or stranaB == stranaA:
                 print("     Trojúhelník je rovnoramenný")
                 stran = False
-
+            # obecny
             if (prav):
                 if (rov):
                     if (stran):
@@ -69,8 +71,29 @@ def trojuhelniky():
         print("     1. ANO")
         print("     2. NE")
         cyclet = int(input())
-
-def
+# Overeni data narozeni
+def datum():
+    cyclen = True
+    while cyclen == True:
+        datum = input("Zadejte datum narození ve tvaru dd/mm/rr: ")
+        # Kontrola cifer
+        cislo = (len(str(datum)))
+        if cislo != 10:
+            print("Zadali jste špatně datum")
+        else:
+            # rozdeleni inputu
+            day, month, year = datum.split('/')
+            validDatum = True
+            try:
+                datetime.datetime(int(year), int(month), int(day))
+            except ValueError:
+                validDatum = False
+            if (validDatum):
+                print("     Datum narození", datum, "je platný")
+                cyclen = False
+            else:
+                print("     Datum narození", datum, "je neplatný")
+                cyclen = False
 
 # Vyber programu
 while cycle==True:
@@ -78,35 +101,15 @@ while cycle==True:
     print("2. Identifikace trojúhelníku")
     print("3. Ověření data narození")
     print("4. Konec")
-
     volba=int(input("Vyberte možnost (číselně): "))
+
     match volba:
         case 1:
            bmi()
         case 2:
            trojuhelniky()
         case 3:
-            cyclen = True
-            while cyclen == True:
-                datum = input("Zadejte datum narození ve tvaru dd/mm/rr: ")
-                # Kontrola cifer
-                cislo = (len(str(datum)))
-                if cislo != 10:
-                    print("Zadali jste špatně datum")
-                else:
-                    # rozdeleni inputu
-                    day, month, year = datum.split('/')
-                    validDatum = True
-                    try:
-                        datetime.datetime(int(year), int(month), int(day))
-                    except ValueError:
-                        validDatum = False
-                    if (validDatum):
-                        print("     Datum narození", datum, "je platný")
-                        cyclen = False
-                    else:
-                        print("     Datum narození", datum, "je neplatný")
-                        cyclen = False
+            datum()
         case 4:
             print("Bye")
             exit()
